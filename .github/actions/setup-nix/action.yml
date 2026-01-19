@@ -71,10 +71,10 @@ runs:
         sudo chmod 400 /etc/nix/ssh_id{,-cert.pub}
 
     - name: install nix
-      uses: cachix/install-nix-action@v31
+      uses: determinateSystems/nix-installer-action@main
       with:
         # Putting build-dir in /nix is a workaround for https://github.com/wimpysworld/nothing-but-nix/issues/18
-        extra_nix_config: |
+        extra-conf: |
           accept-flake-config = true
           build-dir = /nix/build
           builders = @/etc/nix/machines
