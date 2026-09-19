@@ -101,7 +101,7 @@ jobs:
           ssh-cert: ${{ (vars.USE_BUILDERS == 'yes' || vars.USE_BUILDERS == 'always') && secrets.SSH_CERT || '' }}
 
       - name: nix build
-        run: nix build --keep-going -L ${{ inputs.packages }}
+        run: nix shell nixpkgs#coreutils -c timeout 6m nix build --keep-going -L ${{ inputs.packages }}
         if: ${{ inputs.packages != '' }}
 
       - name: set GITHUB_TOKEN
